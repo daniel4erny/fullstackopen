@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Stats from "./statistics";
 
 function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+
   return (
     <>
       <h1>Give Feedback</h1>
@@ -11,10 +13,7 @@ function App() {
       <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
       <button onClick={() => setBad(bad + 1)}>bad</button>
 
-      <h1>Statistics: </h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
+      <Stats good={good} neutral={neutral} bad={bad}></Stats>
     </>
   );
 }
