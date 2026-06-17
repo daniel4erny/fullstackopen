@@ -1,3 +1,5 @@
+import Stats_line from "./Stats_line";
+
 type Props = {
   good: number;
   neutral: number;
@@ -20,12 +22,15 @@ export default function Stats({ good, neutral, bad }: Props) {
 
   return (
     <>
-      <h1>Statistics: </h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>average {average}</p>
-      <p>positive {positive}%</p>
+      <table>
+        <h1>Statistics: </h1>
+        <Stats_line info="good" value={String(good)}></Stats_line>
+        <Stats_line info="neutral" value={String(neutral)}></Stats_line>
+        <Stats_line info="bad" value={String(bad)}></Stats_line>
+        <Stats_line info="average" value={String(average)}></Stats_line>
+        <Stats_line info="good" value={String(bad)}></Stats_line>
+        <Stats_line info="positive" value={String(`${positive}%`)}></Stats_line>
+      </table>
     </>
   );
 }

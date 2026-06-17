@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Stats from "./statistics";
+import Rating_button from "./rating_button";
 
 function App() {
   const [good, setGood] = useState(0);
@@ -9,9 +10,15 @@ function App() {
   return (
     <>
       <h1>Give Feedback</h1>
-      <button onClick={() => setGood(good + 1)}>good</button>
-      <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-      <button onClick={() => setBad(bad + 1)}>bad</button>
+      <Rating_button
+        rate={() => setGood(good + 1)}
+        word="neutral"
+      ></Rating_button>
+      <Rating_button
+        rate={() => setNeutral(neutral + 1)}
+        word="good"
+      ></Rating_button>
+      <Rating_button rate={() => setBad(bad + 1)} word="bad"></Rating_button>
 
       <Stats good={good} neutral={neutral} bad={bad}></Stats>
     </>
