@@ -1,11 +1,15 @@
-type Props = {
-  parts: { name: string; exercises: number }[];
+type Part = {
+  name: string;
+  exercises: number;
+  id: number;
 };
 
-export default function Total({ parts }: Props) {
-  return (
-    <p>
-      Number of exercises {parts.reduce((sum, part) => sum + part.exercises, 0)}
-    </p>
-  );
+type Props = {
+  parts: Part[];
+};
+
+export default function ({ parts }: Props) {
+  const total = parts.reduce((sum, part) => sum + part.exercises, 0);
+
+  return <strong>total of {total} exercises</strong>;
 }
