@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PersonForm from "./PersonForm";
 import NumberList from "./NumberList";
+import Filter from "./Filter";
 
 type Person = {
   name: string;
@@ -17,6 +18,8 @@ export default function App() {
   ]);
   const [newName, setNewName] = useState<string>("");
   const [newPhoneNum, setNewPhoneNum] = useState<string>("");
+  const [filter, setFilter] = useState<string>("");
+  const personsFiltered = updateNums();
 
   function appendPersons() {
     const isPresent = persons.some(
@@ -35,8 +38,20 @@ export default function App() {
     setNewPhoneNum("");
   }
 
+  function updateNums() {
+    if (filter === "") {
+      return persons;
+    }
+    const helper = persons.filter((person) =>
+      person.name.toLowerCase().includes(filter),
+    );
+    return helper;
+  }
+
   return (
     <>
+      <h2>Filter</h2>
+      <Filter newFilter={setFilter} />
       <h2>Phonebook</h2>
       <PersonForm
         currName={newName}
@@ -46,7 +61,7 @@ export default function App() {
         newName={appendPersons}
       ></PersonForm>
       <h2>Numbers</h2>
-      <NumberList persons={persons} />
+      <NumberList persons={personsFiltered} />
     </>
   );
 }
